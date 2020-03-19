@@ -1,0 +1,35 @@
+{
+  "extends": "@ken0x0a/tsconfig/default",
+  // "extends": "@ken0x0a/tsconfig" will be same with "@ken0x0a/tsconfig/default", but VSCode link (with ⌥ (OPTION KEY)) resolve "@ken0x0a/tsconfig.json
+  // "extends": "@ken0x0a/tsconfig/base", // base configuration
+  // "extends": "@ken0x0a/tsconfig/bob", // use with "bob"
+  // "extends": "@ken0x0a/tsconfig/commonjs", // to compile to "commonjs"
+  // "extends": "@ken0x0a/tsconfig/js", // use for eslint "overrides.parserOptions.project": "@ken0x0a/tsconfig/js"
+  // "extends": "@ken0x0a/tsconfig/node", // to run by "node"
+  // "extends": "@ken0x0a/tsconfig/react-native",
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "lib": [
+      "dom",
+      "es2015",
+      "es2017",
+      "es2018",
+      "esnext"
+    ],
+    "jsx": "react-native",
+    "downlevelIteration": false,
+    "baseUrl": "./",
+    "paths": {
+      "@src": ["src"],
+    },
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+
+    /* Experimental Options */
+    "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
+    "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
+  },
+  "include": ["**/*.ts"],
+  // "exclude": ["PATH_TO_EXCLUDE/**"]
+}

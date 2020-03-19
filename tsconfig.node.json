@@ -1,0 +1,25 @@
+{
+  "extends": "@ken0x0a/tsconfig/node",
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "lib": [
+      "dom",
+      "es2015",
+      "es2017",
+      "es2018",
+      "esnext"
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "src": ["src"],
+    },
+    "allowSyntheticDefaultImports": true,
+
+    /* Experimental Options */
+    // "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
+    // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["__test__/**"]
+}
