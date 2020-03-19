@@ -1,16 +1,23 @@
-import * as React from "react";
-import { Platform, StatusBar, StyleSheet, View } from "react-native";
-import { SplashScreen } from "expo";
-import * as Font from "expo-font";
 import { Ionicons } from "@expo/vector-icons";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-
+import { SplashScreen } from "expo";
+import * as Font from "expo-font";
+import * as React from "react";
+import { Platform, StatusBar, StyleSheet, View } from "react-native";
+import { DrawerContent } from "./components/DrawerContent";
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import useLinking from "./navigation/useLinking";
 
+const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
+const RootStack: React.FC = () => (
+  <Stack.Navigator>
+    <Stack.Screen name="Root" component={BottomTabNavigator} />
+  </Stack.Navigator>
+);
 export function App(props) {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
   const [initialNavigationState, setInitialNavigationState] = React.useState();
@@ -29,7 +36,7 @@ export function App(props) {
         // Load fonts
         await Font.loadAsync({
           ...Ionicons.font,
-          "space-mono": require("./assets/fonts/SpaceMono-Regular.ttf")
+          "space-mono": require("../assets/fonts/SpaceMono-Regular.ttf")
         });
       } catch (e) {
         // We might want to provide this error information to an error reporting service
@@ -53,9 +60,11 @@ export function App(props) {
           ref={containerRef}
           initialState={initialNavigationState}
         >
-          <Stack.Navigator>
-            <Stack.Screen name="Root" component={BottomTabNavigator} />
-          </Stack.Navigator>
+          <Drawer.Navigator
+            drawerContent={props => <DrawerContent {...props} />}
+          >
+            <Drawer.Screen name="Feed" component={RootStack} />
+          </Drawer.Navigator>
         </NavigationContainer>
       </View>
     );
